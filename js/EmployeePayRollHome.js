@@ -32,6 +32,20 @@ const getDeptHtml = (deptList) => {
     }
     return deptHtml;
   }
+  //Function to Remove an employee
+  const remove = (param) =>{
+    let empPayrollData = employeeList.findIndex(emp => emp._id == param.id);
+    if(askDelete(empPayrollData._name))
+    employeeList.splice(empPayrollData,1);
+    else
+    return;
+    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeeList));
+    createEmployeeTable();
+}
+
+let askDelete = (name) =>{
+    return confirm("Do you want to continue with the deletion of employee!!"+name);
+}
 
 function createJsonFile()
 {
